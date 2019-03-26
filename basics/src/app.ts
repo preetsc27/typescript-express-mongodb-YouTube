@@ -2,11 +2,14 @@ import * as express from 'express'
 import { Request, Response } from 'express';
 import { requestMiddleware }  from './middleware/requestMiddleware'
 import * as bodyParser from 'body-parser'
+import carRouter from './controllers/Car.Controller';
 
 const PORT = 8080
 const app = express()
 app.use(requestMiddleware)
 app.use(bodyParser.json())
+
+app.use("/car", carRouter)
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello YouTube")
